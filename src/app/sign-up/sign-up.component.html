@@ -1,0 +1,46 @@
+<p>sign-up works!</p>
+<form #myForm="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+      Form submitted ? {{myForm.submitted}}
+      Form valid ? {{myForm.valid}}
+      Form invalid ? {{myForm.invalid}}
+    </div>
+  
+    <fieldset>
+        <label for="email-order">Email:</label>
+        <input id="email-order" name="email-order" type="email" [(ngModel)]="model.email" #email="ngModel" required email>
+      </fieldset>
+    
+      <!-- Message d'erreurs de contact -->
+      <div *ngIf="email.errors">
+        <span *ngIf="email.errors?.['required']">L'email est requis</span>
+        <span *ngIf="email.errors?.['email']">L'email est invalide</span>
+      </div>
+
+    <fieldset>
+      <label for="firstName-order">firstname</label>
+      <input id="firstName-order" name="firstName-order" type="text" [(ngModel)]="model.firstName" #firstName="ngModel" required minlength="3" maxlength="15"/>
+    </fieldset>
+  
+    <!-- Message d'erreurs de title -->
+    <div *ngIf="firstName.errors">
+      <span *ngIf="firstName.errors?.['required']">Le firstname est requis</span>
+      <span *ngIf="firstName.errors?.['minlength']">Le firstname doit comporter au moins 3 caractères.</span>
+      <span *ngIf="firstName.errors?.['maxlength']">Le firstname ne doit pas dépasser 15 caractères.</span>
+    </div>
+  
+
+    <fieldset>
+        <label for="lastName-order">lastname</label>
+        <input id="lastName-order" name="lastName-order" type="text" [(ngModel)]="model.lastName" #lastName="ngModel" required minlength="3" maxlength="15"/>
+      </fieldset>
+    
+      <!-- Message d'erreurs de title -->
+      <div *ngIf="lastName.errors">
+        <span *ngIf="lastName.errors?.['required']">Le lastname est requis</span>
+        <span *ngIf="lastName.errors?.['minlength']">Le lastname doit comporter au moins 3 caractères.</span>
+        <span *ngIf="lastName.errors?.['maxlength']">Le lastname ne doit pas dépasser 15 caractères.</span>
+      </div>
+
+    <button type="submit">Submit</button>
+  </form>
